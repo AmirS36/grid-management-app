@@ -1,0 +1,6 @@
+Paths:
+C:\Users\User\IdeaProjects\Shitcel\XML Files\basic.xml
+C:\Users\User\IdeaProjects\Shitcel\XML Files\error-2.xml
+C:\Users\User\IdeaProjects\Shitcel\XML Files\error-4.xml
+C:\Users\User\IdeaProjects\Shitcel\XML Files\insurance.xml
+C:\Users\User\IdeaProjects\Shitcel\XML Files\myInsurance.xml
