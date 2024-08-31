@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Engine/Engine.iml" filepath="$PROJECT_DIR$/Engine/Engine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GrapichalUI/GrapichalUI.iml" filepath="$PROJECT_DIR$/GrapichalUI/GrapichalUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/Shitcel.iml" filepath="$PROJECT_DIR$/Shitcel.iml" />
       <module fileurl="file://$PROJECT_DIR$/UserInterface/UserInterface.iml" filepath="$PROJECT_DIR$/UserInterface/UserInterface.iml" />
     </modules>
