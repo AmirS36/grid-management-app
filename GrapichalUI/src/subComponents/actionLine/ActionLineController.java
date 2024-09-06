@@ -4,11 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import subComponents.main.mainController;
+import subComponents.app.MainController;
 
-public class actionLineController {
+public class ActionLineController {
 
-    private mainController myMainController;
+    private MainController myMainController;
 
     @FXML private TextField originalValueTF;
 
@@ -20,7 +20,7 @@ public class actionLineController {
 
     @FXML private Button versionSelectorButton;
 
-    public void setMainController(mainController myMainController) {
+    public void setMainController(MainController myMainController) {
         this.myMainController = myMainController;
     }
 

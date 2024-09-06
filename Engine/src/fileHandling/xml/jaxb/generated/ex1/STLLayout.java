@@ -5,7 +5,7 @@
 //
 
 
-package fileHandling.xml.jaxb.generated;
+package fileHandling.xml.jaxb.generated.ex1;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;

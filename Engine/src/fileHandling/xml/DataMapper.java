@@ -8,8 +8,8 @@ import sheet.cell.CellImpl;
 import sheet.coordinate.Coordinate;
 import sheet.effectiveValue.EffectiveValueImpl;
 import sheet.base.impl.SheetImpl;
-import fileHandling.xml.jaxb.generated.STLCell;
-import fileHandling.xml.jaxb.generated.STLSheet;
+import fileHandling.xml.jaxb.generated.ex1.STLCell;
+import fileHandling.xml.jaxb.generated.ex1.STLSheet;
 
 import java.util.HashMap;
 import java.util.List;

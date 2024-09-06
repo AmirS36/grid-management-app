@@ -5,11 +5,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import subComponents.main.mainController;
+import subComponents.app.MainController;
 
-public class visualSettingsController {
+public class VisualSettingsController {
 
-    private mainController myMainController;
+    private MainController myMainController;
 
     @FXML private Button CenterAlignmentButton;
     @FXML private HBox alignmentButtons;
@@ -20,7 +20,7 @@ public class visualSettingsController {
     @FXML private Button rightAlignmentButton;
     @FXML private TextField rowWidthTF;
 
-    public void setMainController(mainController myMainController) {
+    public void setMainController(MainController myMainController) {
         this.myMainController = myMainController;
     }
 }

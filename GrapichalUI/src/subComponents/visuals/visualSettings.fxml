@@ -12,9 +12,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="visuals" alignment="TOP_CENTER" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.visuals.visualSettingsController">
+<VBox id="visuals" alignment="TOP_CENTER" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.visuals.VisualSettingsController">
    <children>
-      <Label id="visual-properties-header" alignment="CENTER" text="Visual Properties">
+      <Label id="visual-properties-header" alignment="CENTER" text="Visual Properties" VBox.vgrow="ALWAYS">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -22,16 +22,16 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="95.0" prefWidth="200.0">
+      <HBox maxHeight="90.0" prefHeight="90.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="150.0">
+            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label id="row-width-header" text="Row Width">
+                  <Label id="row-width-header" text="Row Width" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label id="column-width-header" text="Column Height">
+                  <Label id="column-width-header" text="Column Height" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <Insets top="2.0" />
                      </VBox.margin>
                   </Label>
-                  <Label id="alignment-header" text="Alignment">
+                  <Label id="alignment-header" text="Alignment" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -52,14 +52,14 @@
                   <Insets left="5.0" top="5.0" />
                </HBox.margin>
             </VBox>
-            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="125.0">
+            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="125.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField id="row-width-tf" fx:id="rowWidthTF" alignment="CENTER" maxWidth="60.0" prefWidth="25.0">
+                  <TextField id="row-width-tf" fx:id="rowWidthTF" alignment="CENTER" maxWidth="60.0" prefWidth="25.0" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </TextField>
-                  <TextField id="column-height-tf" fx:id="columnHeightTF" alignment="CENTER" maxWidth="60.0" prefWidth="25.0">
+                  <TextField id="column-height-tf" fx:id="columnHeightTF" alignment="CENTER" maxWidth="60.0" prefWidth="25.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -67,7 +67,7 @@
                         <Font size="11.0" />
                      </font>
                   </TextField>
-                  <HBox id="alignment-buttons" fx:id="alignmentButtons" alignment="CENTER" prefHeight="35.0" prefWidth="200.0">
+                  <HBox id="alignment-buttons" fx:id="alignmentButtons" alignment="CENTER" prefHeight="35.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Button id="left-alignment-button" fx:id="leftAlignmentButton" contentDisplay="TOP" minWidth="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0">
                            <HBox.margin>
@@ -117,21 +117,24 @@
             </VBox>
          </children>
       </HBox>
-      <Label text="Cell Design">
+      <Label text="Cell Design" VBox.vgrow="ALWAYS">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
       </Label>
-      <HBox alignment="CENTER" prefHeight="95.0" prefWidth="200.0">
+      <HBox alignment="CENTER" maxHeight="90.0" prefHeight="95.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="150.0">
+            <VBox alignment="CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label id="color-header" text="Color">
+                  <Label id="color-header" text="Color" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label id="background-color-header" alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="Background Color" textAlignment="CENTER" wrapText="true">
+                  <Label id="background-color-header" alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="Background Color" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -144,12 +147,12 @@
                   <Insets left="5.0" top="5.0" />
                </HBox.margin>
             </VBox>
-            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="125.0">
+            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="125.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="10.0" top="5.0" />
                </HBox.margin>
                <children>
-                  <ColorPicker fx:id="mainColorPicker" maxWidth="40.0">
+                  <ColorPicker fx:id="mainColorPicker" maxWidth="40.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets right="5.0" top="2.0" />
                      </VBox.margin>
@@ -157,7 +160,7 @@
                         <Color />
                      </value>
                   </ColorPicker>
-                  <ColorPicker fx:id="backgroundColorPicker" maxWidth="40.0">
+                  <ColorPicker fx:id="backgroundColorPicker" maxWidth="40.0" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets right="5.0" top="15.0" />
                      </VBox.margin>

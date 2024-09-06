@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<ScrollPane fitToHeight="true" fitToWidth="true" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.app.MainController">
+   <content>
+      <BorderPane fx:id="mainBorderPane" maxHeight="1080.0" maxWidth="1920.0" minHeight="-Infinity" minWidth="-Infinity">
+         <top>
+            <VBox alignment="TOP_CENTER" maxWidth="1920.0" prefHeight="150.0" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label id="main-title" alignment="TOP_CENTER" text="Shticel" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <fx:include fx:id="loadFileComponent" source="../loadFile/loadFile.fxml" VBox.vgrow="ALWAYS" />
+                  <fx:include fx:id="actionLineComponent" source="../actionLine/actionLine.fxml" VBox.vgrow="ALWAYS" />
+               </children>
+               <BorderPane.margin>
+                  <Insets left="15.0" right="15.0" top="10.0" />
+               </BorderPane.margin>
+            </VBox>
+         </top>
+         <left>
+            <VBox id="left-side-vbox" alignment="TOP_CENTER" prefHeight="600.0" prefWidth="220.0" style="-fx-background-color: lightgrey;" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <fx:include fx:id="visualSettingsComponent" source="../visuals/visualSettings.fxml" VBox.vgrow="ALWAYS" />
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="15.0" top="20.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+      </BorderPane>
+   </content>
+</ScrollPane>

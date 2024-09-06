@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.loadFile.loadFileController">
+<HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.loadFile.LoadFileController">
    <children>
-      <Button id="load-file-button" fx:id="loadFileButton" mnemonicParsing="false" text="Load File">
+      <Button id="load-file-button" fx:id="loadFileButton" mnemonicParsing="false" onAction="#loadFileButtonAction" text="Load File" HBox.hgrow="ALWAYS">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label id="load-file-ta" fx:id="loadFileTA" prefWidth="1100.0">
+      <Label id="load-file-ta" fx:id="loadFileTA" prefWidth="1100.0" HBox.hgrow="ALWAYS">
          <HBox.margin>
             <Insets left="15.0" />
          </HBox.margin>
