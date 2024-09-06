@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox id="visuals" alignment="TOP_CENTER" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.visuals.visualSettingsController">
+   <children>
+      <Label id="visual-properties-header" alignment="CENTER" text="Visual Properties">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="95.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="150.0">
+               <children>
+                  <Label id="row-width-header" text="Row Width">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label id="column-width-header" text="Column Height">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label id="alignment-header" text="Alignment">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="125.0">
+               <children>
+                  <TextField id="row-width-tf" fx:id="rowWidthTF" alignment="CENTER" maxWidth="60.0" prefWidth="25.0">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <TextField id="column-height-tf" fx:id="columnHeightTF" alignment="CENTER" maxWidth="60.0" prefWidth="25.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <HBox id="alignment-buttons" fx:id="alignmentButtons" alignment="CENTER" prefHeight="35.0" prefWidth="200.0">
+                     <children>
+                        <Button id="left-alignment-button" fx:id="leftAlignmentButton" contentDisplay="TOP" minWidth="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/images/left.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                        </Button>
+                        <Button id="center-alignment-button" fx:id="CenterAlignmentButton" minWidth="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/images/center.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button id="right-alignment-button" fx:id="rightAlignmentButton" minWidth="20.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="35.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../resources/images/right.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets right="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets top="5.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <Label text="Cell Design">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="95.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="150.0">
+               <children>
+                  <Label id="color-header" text="Color">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label id="background-color-header" alignment="CENTER" prefHeight="100.0" prefWidth="120.0" text="Background Color" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="2.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="125.0">
+               <HBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </HBox.margin>
+               <children>
+                  <ColorPicker fx:id="mainColorPicker" maxWidth="40.0">
+                     <VBox.margin>
+                        <Insets right="5.0" top="2.0" />
+                     </VBox.margin>
+                     <value>
+                        <Color />
+                     </value>
+                  </ColorPicker>
+                  <ColorPicker fx:id="backgroundColorPicker" maxWidth="40.0">
+                     <VBox.margin>
+                        <Insets right="5.0" top="15.0" />
+                     </VBox.margin>
+                     <value>
+                        <Color />
+                     </value>
+                  </ColorPicker>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
