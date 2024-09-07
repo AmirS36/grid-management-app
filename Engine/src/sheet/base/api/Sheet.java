@@ -25,7 +25,7 @@ public interface Sheet {
     void setCellsChanged(int cellsChanged);
     void updateAllValues();
 
-    void addRange(String name, Range range);
+    void addRange(Range range);
     Range getRange(String name);
     void removeRange(String name);
     Range createRange(String name, Coordinate topLeft, Coordinate bottomRight);

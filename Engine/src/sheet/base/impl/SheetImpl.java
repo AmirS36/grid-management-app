@@ -21,13 +21,13 @@ public class SheetImpl implements Sheet, Serializable {
     private final String name;
     private final int rowsLength;
     private final int colsLength;
-    private Map<Coordinate, Cell> activeCells;
+    private final Map<Coordinate, Cell> activeCells;
     private int rowHeight = 3;
     private int colWidth = 15;
     private int version;
     private int cellsChanged;
     private Map<Coordinate, Cell> previousActiveCells;
-    private Map<String, Range> ranges;
+    private final Map<String, Range> ranges;
 
     public SheetImpl(String name, int rows, int cols, int rowHeight, int colWidth, Map<Coordinate, Cell> cells, int version, int cellsChanged) {
         this.name = name;
@@ -38,6 +38,7 @@ public class SheetImpl implements Sheet, Serializable {
         this.activeCells = cells; // Ensure deep copy
         this.version = version;
         this.cellsChanged = cellsChanged;
+        this.ranges = new HashMap<>();
     }
 
     @Override
@@ -378,8 +379,8 @@ public class SheetImpl implements Sheet, Serializable {
     //Ranges
 
     @Override
-    public void addRange(String name, Range range) {
-        ranges.put(name,range);
+    public void addRange(Range range) {
+        ranges.put(range.getName(),range);
     }
 
     @Override

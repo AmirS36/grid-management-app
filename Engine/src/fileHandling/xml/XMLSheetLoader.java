@@ -1,7 +1,7 @@
 package fileHandling.xml;
 
 
-import fileHandling.xml.jaxb.generated.ex1.STLSheet;
+import fileHandling.xml.jaxb.generated.ex2.STLSheet;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Unmarshaller;

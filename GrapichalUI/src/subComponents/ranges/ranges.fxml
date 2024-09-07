@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="TOP_CENTER" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.ranges.RangesController">
    <children>
       <Label id="ranges-header" alignment="TOP_CENTER" text="Ranges" textAlignment="CENTER">
          <font>
