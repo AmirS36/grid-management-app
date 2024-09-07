@@ -10,6 +10,7 @@ import sheet.base.api.Sheet;
 import subComponents.actionLine.ActionLineController;
 import subComponents.grid.GridController;
 import subComponents.loadFile.LoadFileController;
+import subComponents.ranges.RangesController;
 import subComponents.visuals.VisualSettingsController;
 
 public class MainController {
@@ -26,6 +27,9 @@ public class MainController {
     @FXML private HBox actionLineComponent;
     @FXML private ActionLineController actionLineComponentController;
 
+    @FXML private VBox rangesComponent;
+    @FXML private RangesController rangesComponentController;
+
     private GridPane gridComponent;
     private GridController gridComponentController;
 
@@ -34,11 +38,11 @@ public class MainController {
     //TODO - ADD ON TOP
     @FXML
     public void initialize() {
-        if (visualSettingsComponentController != null && loadFileComponentController != null && actionLineComponentController != null) {
+        if (visualSettingsComponentController != null && loadFileComponentController != null && actionLineComponentController != null && rangesComponentController != null) {
             visualSettingsComponentController.setMainController(this);
             loadFileComponentController.setMainController(this);
             actionLineComponentController.setMainController(this);
-           // gridComponentController.setMainController(this);
+            rangesComponentController.setMyMainController(this);
 
         }
     }

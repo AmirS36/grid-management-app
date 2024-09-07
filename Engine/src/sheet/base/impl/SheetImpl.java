@@ -8,6 +8,8 @@ import sheet.coordinate.Coordinate;
 import sheet.base.api.Sheet;
 import sheet.coordinate.CoordinateFactory;
 import sheet.effectiveValue.EffectiveValueImpl;
+import sheet.ranges.Range;
+import sheet.ranges.RangeImpl;
 
 import java.io.Serializable;
 import java.util.*;
@@ -25,6 +27,7 @@ public class SheetImpl implements Sheet, Serializable {
     private int version;
     private int cellsChanged;
     private Map<Coordinate, Cell> previousActiveCells;
+    private Map<String, Range> ranges;
 
     public SheetImpl(String name, int rows, int cols, int rowHeight, int colWidth, Map<Coordinate, Cell> cells, int version, int cellsChanged) {
         this.name = name;
@@ -68,6 +71,19 @@ public class SheetImpl implements Sheet, Serializable {
 
     @Override
     public void setCellsChanged(int cellsChanged) {this.cellsChanged = cellsChanged;}
+
+    public Cell getCell(int col, int row) {
+        return getCell(getColumnName(col) + (row + 1));
+    }
+
+    private String getColumnName(int col) {
+        StringBuilder columnName = new StringBuilder();
+        while (col >= 0) {
+            columnName.insert(0, (char) ('A' + col % 26));
+            col = col / 26 - 1;
+        }
+        return columnName.toString();
+    }
 
     @Override
     public Cell getCell(String cellID) {
@@ -257,6 +273,7 @@ public class SheetImpl implements Sheet, Serializable {
         return columnIndex - 1;  // Convert to 0-based index
     }
 
+    @Override
     public void updateAllValues() {
 
         //step 1: update all cells dependencies and influences
@@ -358,5 +375,58 @@ public class SheetImpl implements Sheet, Serializable {
         }
     }
 
+    //Ranges
+
+    @Override
+    public void addRange(String name, Range range) {
+        ranges.put(name,range);
+    }
+
+    @Override
+    public Range getRange(String name) {
+        return ranges.get(name);
+    }
+
+    @Override
+    public void removeRange(String name) {
+        ranges.remove(name);
+    }
+
+    @Override
+    public Range createRange(String name, Coordinate topLeft, Coordinate bottomRight) {
+        Set<Cell> cells = new HashSet<>();
+
+        // Iterate through the specified range and add cells to the set
+        for (int row = topLeft.getRow(); row <= bottomRight.getRow(); row++) {
+            for (int col = topLeft.getCol(); col <= bottomRight.getCol(); col++) {
+                Coordinate coord = CoordinateFactory.createCoordinate(row, col);
+                Cell cell = getCell(coord.toString()); // Assuming there's a method to get a cell by its coordinate
+                if (cell != null) {
+                    cells.add(cell);
+                }
+            }
+        }
+        // Validate the range
+        if (isValidRange(topLeft, bottomRight, cells)) {
+            return new RangeImpl(name,cells);
+        } else {
+            throw new IllegalArgumentException("The range is invalid.");
+        }
+    }
+
+    @Override
+    public boolean isValidRange(Coordinate topLeft, Coordinate bottomRight, Set<Cell> cells) {
+        // Check if the cells form a valid rectangular block
+        // Optionally, you can add more specific validation based on your requirements
+        for (int row = topLeft.getRow(); row <= bottomRight.getRow(); row++) {
+            for (int col = topLeft.getCol(); col <= bottomRight.getCol(); col++) {
+                Coordinate coord = CoordinateFactory.createCoordinate(row, col);
+                if (!cells.contains(getCell(coord.toString()))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
 }

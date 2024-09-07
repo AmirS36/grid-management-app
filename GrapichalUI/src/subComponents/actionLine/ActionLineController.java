@@ -11,13 +11,9 @@ public class ActionLineController {
     private MainController myMainController;
 
     @FXML private TextField originalValueTF;
-
     @FXML private Label selectedCellID;
-
     @FXML private Label selectedCellTA;
-
     @FXML private Button updateValueButton;
-
     @FXML private Button versionSelectorButton;
 
     public void setMainController(MainController myMainController) {

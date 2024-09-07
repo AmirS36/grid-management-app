@@ -12,7 +12,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox id="visuals" alignment="TOP_CENTER" minHeight="300.0" minWidth="220.0" prefHeight="300.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.visuals.VisualSettingsController">
+<VBox id="visuals" alignment="TOP_CENTER" maxHeight="280.0" minHeight="250.0" minWidth="220.0" prefHeight="280.0" prefWidth="220.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="subComponents.visuals.VisualSettingsController">
    <children>
       <Label id="visual-properties-header" alignment="CENTER" text="Visual Properties" VBox.vgrow="ALWAYS">
          <font>
