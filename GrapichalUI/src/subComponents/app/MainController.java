@@ -64,6 +64,10 @@ public class MainController {
         gridComponentController.setCurrentSheet(sheet);
     }
 
+    public Sheet getCurrentSheet() {
+        return gridComponentController.getCurrentSheet();
+    }
+
     public void setGridComponent (GridPane gridComponent) {
         mainBorderPane.setCenter(gridComponent);
     }

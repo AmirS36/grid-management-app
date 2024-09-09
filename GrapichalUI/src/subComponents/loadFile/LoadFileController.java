@@ -14,11 +14,10 @@ import java.io.File;
 
 public class LoadFileController {
 
+    private MainController myMainController;
 
     @FXML private Button loadFileButton;
     @FXML private Label loadFileTA;
-
-    private MainController myMainController;
 
     private SimpleStringProperty selectedFileProperty;
 

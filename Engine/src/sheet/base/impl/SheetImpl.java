@@ -219,8 +219,8 @@ public class SheetImpl implements Sheet, Serializable {
     private List<Coordinate> parseFunctionForReferences(String inputValue) {
         List<Coordinate> references = new ArrayList<>();
 
-        // Define the pattern to match {REF,<CellID>}
-        Pattern pattern = Pattern.compile("\\{REF,([A-Z]+[0-9]+)\\}");
+        // Define the pattern to match {REF,<CellID>} with optional spaces around the comma
+        Pattern pattern = Pattern.compile("\\{REF\\s*,\\s*([A-Z]+[0-9]+)\\}");
         Matcher matcher = pattern.matcher(inputValue);
 
         // Find all matches of the {REF,<CellID>} pattern
@@ -430,4 +430,8 @@ public class SheetImpl implements Sheet, Serializable {
         return true;
     }
 
+    @Override
+    public Map<String, Range> getRanges() {
+        return ranges;
+    }
 }

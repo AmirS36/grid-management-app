@@ -6,15 +6,12 @@ import subComponents.app.MainController;
 
 public class GridController {
 
+    //Controllers
     private MainController myMainController;
-
 
     //Utilities
     private GridService gridService = new GridService();
     private Sheet currentSheet;
-
-
-
 
 
     public void setMainController(MainController myMainController) {

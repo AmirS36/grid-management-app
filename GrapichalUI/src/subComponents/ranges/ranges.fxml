@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -24,8 +25,12 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <ScrollPane id="ranges-scroll-pane" fx:id="rangesScrollPane" maxWidth="215.0" minWidth="210.0" prefHeight="270.0" prefWidth="215.0" style="-fx-background-color: lightgrey; -fx-border-color: lightgrey;" />
-      <HBox alignment="CENTER" minHeight="45.0" prefHeight="100.0" prefWidth="200.0">
+      <ListView id="ranges-list-view" fx:id="rangesListView" maxWidth="210.0" prefHeight="220.0" prefWidth="190.0" VBox.vgrow="ALWAYS">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ListView>
+      <HBox alignment="CENTER" minHeight="45.0" prefHeight="50.0" prefWidth="200.0">
          <children>
             <Button id="new-range-button" fx:id="newRangeButton" mnemonicParsing="false" prefWidth="51.0" styleClass="range-buttons" text="New">
                <HBox.margin>

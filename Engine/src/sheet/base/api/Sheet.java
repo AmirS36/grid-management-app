@@ -30,4 +30,5 @@ public interface Sheet {
     void removeRange(String name);
     Range createRange(String name, Coordinate topLeft, Coordinate bottomRight);
     boolean isValidRange(Coordinate topLeft, Coordinate bottomRight, Set<Cell> cells);
+    Map<String, Range> getRanges();
 }
