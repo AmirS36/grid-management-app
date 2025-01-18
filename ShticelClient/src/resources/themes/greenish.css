@@ -1,0 +1,236 @@
+/* General Styling */
+.root {
+    -fx-background-color: #e0f7fa; /* Light teal background */
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* Main Header: "Shticel" */
+.main-header {
+    -fx-font-size: 34px;
+    -fx-text-fill: #004d40; /* Dark green for clear contrast */
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.background-comp {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-background-radius: 10px;
+}
+
+.dialog-background-comp {
+    -fx-background-color: #ffffff; /* White background */
+}
+
+/* Area Headers */
+.area-header {
+    -fx-font-size: 18px;
+    -fx-text-fill: #004d40; /* Dark green text */
+    -fx-font-weight: bold;
+    -fx-background-color: #80deea; /* Light cyan background */
+}
+
+/* Instruction Headers */
+.instruction-header {
+    -fx-font-size: 12px;
+    -fx-text-fill: #004d40; /* Dark green */
+    -fx-font-style: italic;
+    -fx-alignment: center;
+}
+
+#load-file-ta {
+    -fx-font-size: 18px;
+    -fx-text-fill: #004d40;
+}
+
+/* Field Headers */
+.field-header {
+    -fx-font-size: 16px;
+    -fx-text-fill: #004d40; /* Dark green */
+    -fx-font-weight: bold;
+}
+
+.dynamic-field-header {
+    -fx-font-size: 18px;
+    -fx-text-fill: #004d40;
+}
+
+.button {
+    -fx-background-color: #00838f; /* Strong teal */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50px;
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: #005662; /* Dark teal */
+}
+
+.toggle-button {
+    -fx-background-color: #00838f;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50px;
+    -fx-border-color: transparent;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #005662;
+}
+
+.spinner .increment-arrow-button, .spinner .decrement-arrow-button {
+    -fx-background-color: #00838f;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 0;
+}
+
+.spinner .increment-arrow-button:hover, .spinner .decrement-arrow-button:hover {
+    -fx-background-color: #005662;
+}
+
+.color-picker {
+    -fx-background-color: #00838f;
+}
+
+.color-picker:hover {
+    -fx-background-color: #005662;
+}
+
+/* Styling the column headers */
+.table-view .column-header {
+    -fx-background-color: #b2ebf2; /* Light cyan */
+    -fx-font-size: 17px;
+}
+
+/* Styling for the rows */
+.table-cell {
+    -fx-font-size: 17px;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.table-cell:selected {
+    -fx-background-color: #004d40; /* Dark green */
+    -fx-text-fill: white;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #004d40;
+}
+
+.tab-header-background {
+    -fx-background-color: #00796b; /* Teal */
+}
+
+.tab-label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 10px;
+}
+
+.tab {
+    -fx-background-color: #00838f;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-alignment: center;
+}
+
+.tab-pane {
+    -fx-alignment: center;
+}
+
+.tab:selected {
+    -fx-background-color: #80deea; /* Light cyan */
+}
+
+.tab:hover {
+    -fx-background-color: #005662;
+}
+
+/* Center the text and make it bigger inside the ListView cells */
+.list-cell {
+    -fx-alignment: center-left;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: #004d40;
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #004d40;
+}
+
+/* Grid Design */
+.grid-cell, .grid-header {
+    -fx-border-color: #004d40;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.grid-header {
+    -fx-background-color: #b2ebf2;
+    -fx-font-size: 20px;
+}
+
+.grid-cell:hover, .grid-header:hover {
+    -fx-border-color: black;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: #80deea;
+}
+
+#selected-cell {
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: #80deea;
+    -fx-text-fill: white;
+}
+
+#selected-column {
+    -fx-border-color: black;
+    -fx-border-width: 3px;
+    -fx-border-insets: 0;
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: #00796b;
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+}
+
+/* Other styling for selected cells can be included as needed */
+
+#selected-cell-depends-on {
+    /*    -fx-background-color: #09868b;*/
+    -fx-border-color: #1400c6;               /* Color of the border */
+    -fx-border-width: 5px;                 /* Thickness of the border */
+    -fx-border-style: dashed ;
+    -fx-padding: 5px;
+}
+
+#selected-cell-influencing-on {
+    /*    -fx-background-color: #3d7c47;*/
+    -fx-border-color: #00c07f;               /* Color of the border */
+    -fx-border-width: 5px;                 /* Thickness of the border */
+    -fx-border-style: dashed ;
+    -fx-padding: 5px;
+}
+
+#range-cell {
+    /*    -fx-background-color: #4845a2;*/
+    -fx-border-color: #4845a2;               /* Color of the border */
+    -fx-border-width: 5px;                 /* Thickness of the border */
+    -fx-border-style: dashed ;
+    -fx-padding: 5px;
+}
+

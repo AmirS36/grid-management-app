@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 public class SheetManagerImpl implements SheetManager, Serializable {
 
+    private String sheetOwner;
     private Sheet currentSheet;
     private VersionManagerImpl versionManager;
 
@@ -24,6 +25,12 @@ public class SheetManagerImpl implements SheetManager, Serializable {
         currentSheet = sheetManager.getCurrentSheet();
     }
 
+    public SheetManagerImpl(String sheetOwner, Sheet sheet){
+        this.sheetOwner = sheetOwner;
+        currentSheet = sheet;
+        versionManager = new VersionManagerImpl();
+    }
+
     @Override
     public VersionManagerImpl getVersionManager() {
         return versionManager;
@@ -35,14 +42,17 @@ public class SheetManagerImpl implements SheetManager, Serializable {
     }
 
     @Override
-    public void updateCell(String cellID, String value){
+    public void updateCell(String cellID, String value, String lastUpdatedBy, String type){
         if (currentSheet != null) {
-            currentSheet.setCell(cellID, value);
-            versionManager.saveSheetVersion(currentSheet);
+            currentSheet.setCell(cellID, value, lastUpdatedBy,type);
+            if (type.equals("Final")) {
+                versionManager.saveSheetVersion(currentSheet);
+            }
         } else {
             throw new IllegalStateException("No sheet found");
         }
     }
+
 
     @Override
     public int getCurrentVersion(){
@@ -51,5 +61,10 @@ public class SheetManagerImpl implements SheetManager, Serializable {
         } else {
             throw new IllegalStateException("No sheet found");
         }
+    }
+
+    @Override
+    public String getSheetOwner() {
+        return sheetOwner;
     }
 }

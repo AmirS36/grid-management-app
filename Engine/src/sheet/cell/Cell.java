@@ -1,5 +1,6 @@
 package sheet.cell;
 
+import javafx.scene.paint.Color;
 import sheet.base.api.Sheet;
 import sheet.coordinate.Coordinate;
 import sheet.effectiveValue.EffectiveValue;
@@ -26,4 +27,11 @@ public interface Cell {
     void clearDependsOn();
     void clearInfluencingOn();
     void clearDependenciesAndInfluences();
+    Color getTextColor();
+    Color getBackgroundColor();
+    void setTextColor(Color textColor);
+    void setBackgroundColor(Color backgroundColor);
+    void setDefaultColor();
+    void setLastUpdatedBy(String lastUpdatedBy);
+    String getLastUpdatedBy();
 }

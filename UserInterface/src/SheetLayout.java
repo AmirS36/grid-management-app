@@ -15,6 +15,7 @@ public class SheetLayout {
         int cellHeight = sheet.getRowHeight();
         int rows = sheet.getRowsLength();
         int cols = sheet.getColsLength();
+
         Map<Coordinate, Cell> activeCells = sheet.getActiveCells();
 
         // Print sheet name and version

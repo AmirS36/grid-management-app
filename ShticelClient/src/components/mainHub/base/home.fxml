@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fx:id="mainScrollPane" fitToHeight="true" fitToWidth="true" prefHeight="850.0" prefWidth="1120.0" styleClass="root" stylesheets="@../../../resources/themes/default.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.mainHub.base.MainHubController">
+   <content>
+      <BorderPane fx:id="mainBorderPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="840.0" prefWidth="1100.0" styleClass="root">
+         <top>
+            <VBox alignment="TOP_CENTER" prefHeight="111.0" prefWidth="1098.0" BorderPane.alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+               <children>
+                  <AnchorPane prefHeight="54.0" prefWidth="1068.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Pane layoutX="947.0" layoutY="5.0" prefHeight="40.0" prefWidth="127.0" styleClass="background-comp" AnchorPane.rightAnchor="14.0">
+                           <children>
+                              <Label id="user-name-label" fx:id="userNameLabel" alignment="CENTER" layoutX="14.0" layoutY="11.0" prefHeight="19.0" prefWidth="105.0" styleClass="field-header" text="Example" />
+                           </children>
+                        </Pane>
+                        <Label id="main-title" alignment="TOP_CENTER" layoutX="14.0" layoutY="4.0" styleClass="main-header" text="Shticel" textAlignment="CENTER" AnchorPane.leftAnchor="14.0">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <fx:include fx:id="loadFileComponent" source="../loadFile/loadFile.fxml" VBox.vgrow="ALWAYS" />
+               </children>
+               <BorderPane.margin>
+                  <Insets left="30.0" top="10.0" />
+               </BorderPane.margin>
+            </VBox>
+         </top>
+         <center>
+            <VBox minHeight="0.0" minWidth="0.0" prefHeight="690.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <fx:include fx:id="sheetsTableComponent" prefWidth="700.0" source="../sheetsTable/sheetsTable.fxml" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" BorderPane.alignment="TOP_CENTER" VBox.vgrow="ALWAYS" />
+                  <fx:include fx:id="permissionsTableComponent" source="../permissions/permissionsTable.fxml" VBox.vgrow="ALWAYS" />
+               </children>
+               <BorderPane.margin>
+                  <Insets left="30.0" right="110.0" top="10.0" />
+               </BorderPane.margin>
+            </VBox>
+         </center>
+         <right>
+            <fx:include fx:id="actionPanelComponent" source="../actionPanel/actionPanel.fxml" />
+         </right>
+         <padding>
+            <Insets bottom="30.0" right="30.0" />
+         </padding>
+      </BorderPane>
+   </content>
+</ScrollPane>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="300.0" maxWidth="300.0" styleClass="dialog-background-comp" stylesheets="@login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.startup.login.LoginController">
+   <children>
+        <AnchorPane fx:id="loginAnchorPane" maxHeight="300.0" maxWidth="300.0" prefHeight="300.0" prefWidth="300.0">
+            <children>
+            <Button minHeight="300.0" minWidth="300.0" mnemonicParsing="false" style="-fx-opacity: 0;" text="Button" />
+                <!-- Title Label -->
+                <Label layoutY="26.0" prefHeight="35.0" prefWidth="300.0" styleClass="area-header" text="Login" textFill="#333333">
+                    <font>
+                        <Font name="System Bold" size="23.0" />
+                    </font>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+                </Label>
+      
+                      <!-- Username Field -->
+                <TextField fx:id="usernameTF" layoutX="50.0" layoutY="80.0" prefHeight="40.0" prefWidth="200.0" promptText="Username" style="-fx-background-radius: 10;">
+
+                </TextField>
+      
+                      <!-- Password Field -->
+                <PasswordField disable="true" layoutX="50.0" layoutY="140.0" prefHeight="40.0" prefWidth="200.0" promptText="Password" style="-fx-background-radius: 10;">
+
+                </PasswordField>
+      
+                      <!-- Login Button -->
+                <Button fx:id="loginButton" layoutX="100.0" layoutY="246.0" onAction="#loginButtonAction" prefHeight="40.0" prefWidth="100.0" text="Login">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Label id="login-error-label" fx:id="loginErrorLabel" alignment="CENTER" layoutX="1.0" layoutY="189.0" maxWidth="298.0" prefHeight="50.0" prefWidth="298.0" text="Error is here" textAlignment="CENTER" textFill="#e10707" wrapText="true" />
+            </children>
+        </AnchorPane>
+   </children>
+</StackPane>

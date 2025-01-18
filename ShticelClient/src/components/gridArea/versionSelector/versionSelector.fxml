@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" styleClass="dialog-background-comp" stylesheets="@../../../resources/themes/default.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.gridArea.versionSelector.VersionSelectorController">
+   <children>
+      <VBox alignment="TOP_CENTER" minHeight="350.0" minWidth="350.0">
+         <children>
+            <Label alignment="CENTER" minHeight="30.0" minWidth="350.0" styleClass="area-header" text="Version Selector" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TableView fx:id="vsTableView" maxWidth="300.0" prefHeight="242.0" prefWidth="300.0" styleClass="versions-table">
+              <columns>
+                <TableColumn fx:id="versionColumn" maxWidth="150.0" prefWidth="150.0" text="Version" />
+                <TableColumn fx:id="cellsChangedColumn" maxWidth="150.0" prefWidth="150.0" text=" Cells Changed" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </TableView>
+            <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="VSCancelButton" mnemonicParsing="false" onAction="#VSCancelButtonAction" text="Cancel">
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="VSApplyButton" mnemonicParsing="false" onAction="#VSApplyButtonAction" prefWidth="52.0" text="Apply">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</Pane>

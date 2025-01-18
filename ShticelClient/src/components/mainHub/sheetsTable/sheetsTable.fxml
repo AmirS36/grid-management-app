@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+
+<TableView fx:id="sheetsTV" minHeight="0.0" minWidth="0.0" prefHeight="345.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.mainHub.sheetsTable.SheetsTableController">
+  <columns>
+    <TableColumn fx:id="nameColumn" prefWidth="177.0" sortable="false" text="Sheet Name" />
+    <TableColumn fx:id="uploadedByColumn" prefWidth="177.0" sortable="false" text="Uploaded by" />
+    <TableColumn fx:id="sizeColumn" minWidth="0.0" prefWidth="149.0" sortable="false" text="Dimensions" />
+    <TableColumn fx:id="permissionColumn" prefWidth="197.0" sortable="false" text="Your Permission Level" />
+  </columns>
+   <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+   </columnResizePolicy>
+</TableView>

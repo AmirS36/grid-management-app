@@ -1,11 +1,14 @@
 package sheet.effectiveValue;
 
+import sheet.ranges.Range;
+
 public enum CellType {
     NUMERIC(Double.class) ,
     STRING(String.class) ,
     BOOLEAN(Boolean.class),
     UNKNOWN(Object.class),
     EMPTY(Object.class),
+    RANGE(Range.class),
     ERROR(Error.class);
 
     private Class<?> type;

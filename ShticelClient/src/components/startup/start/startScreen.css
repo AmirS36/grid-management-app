@@ -1,0 +1,10 @@
+
+#login-button {
+    -fx-opacity: 1;
+    -fx-background-color: transparent;
+}
+
+#login-button:hover {
+    -fx-border-color: white;               /* Color of the border */
+    -fx-border-width: 2px;
+}

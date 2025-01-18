@@ -1,0 +1,50 @@
+.root {
+    -fx-background-color: #f1f1fc;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+.field-header {
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.dynamic-field-header {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+}
+
+.dialog-background-comp {
+    -fx-background-color: #2C2E3A ;
+}
+
+
+.button {
+    -fx-background-color: #4574a2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50px; /* Rounded corners */
+    -fx-border-color: transparent;
+}
+
+.button:hover {
+    -fx-background-color: #4845a2;
+}
+
+/* Area Headers (like 'Visual Properties', 'Cell Design') */
+.area-header {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-color: #80a2cd;
+    -fx-border-style: solid;
+    /*-fx-padding: 5px; !* Adds some spacing inside the header *!*/
+}
+
+/* Instruction Headers (like 'Select a row / column to edit') */
+.instruction-header {
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-font-style: italic;
+    -fx-alignment: center;
+}

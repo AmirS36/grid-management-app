@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="150.0" maxWidth="300.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" styleClass="dialog-background-comp" stylesheets="@../../../../resources/themes/default.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.gridArea.ranges.newRangeDialog.NewRangeController">
+   <children>
+      <Label id="new-range-header" alignment="CENTER" prefWidth="300.0" styleClass="area-header" text="New Range" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="7.5" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="90.0" prefWidth="200.0">
+         <children>
+            <Label id="new-range-name-header" styleClass="field-header" text="Name">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newRangeNameTF" maxWidth="130.0" styleClass="text-field">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="90.0" prefWidth="200.0">
+         <children>
+            <Label id="new-range-from-header" styleClass="field-header" text="From">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="newRangeFromTF" maxWidth="45.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+            <Label id="new-to-from-header" layoutX="10.0" layoutY="10.0" styleClass="field-header" text="To">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="17.5" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="newRangeToTF" layoutX="38.0" layoutY="10.0" maxWidth="45.0">
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </HBox>
+      <HBox alignment="CENTER" minHeight="35.0" prefHeight="35.0" prefWidth="300.0">
+         <children>
+            <Button fx:id="newRangeCancelButton" mnemonicParsing="false" onAction="#newRangeCancelButtonAction" text="Cancel">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="newRangeCreateButton" mnemonicParsing="false" onAction="#newRangeCreateButtonAction" text="Create">
+               <HBox.margin>
+                  <Insets left="172.0" right="7.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

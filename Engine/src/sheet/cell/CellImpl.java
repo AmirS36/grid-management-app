@@ -1,5 +1,6 @@
 package sheet.cell;
 
+import javafx.scene.paint.Color;
 import sheet.base.api.Sheet;
 import sheet.coordinate.Coordinate;
 import sheet.coordinate.CoordinateImpl;
@@ -17,16 +18,22 @@ public class CellImpl implements Cell, Serializable {
     private String originalValue;
     private EffectiveValue effectiveValue;
     private int version;
+    private String lastUpdatedBy;
     private List<Cell> dependsOn;
     private List<Cell> influencingOn;
+    private Color textColor;
+    private Color backgroundColor;
 
     public CellImpl(int row, int col, String originalValue, EffectiveValue effectiveValue, int version) {
         this.coordinate = new CoordinateImpl(row,col);
         this.originalValue = originalValue;
         this.effectiveValue = effectiveValue;
         this.version = version;
+        this.lastUpdatedBy = "Owner";
         this.dependsOn = new ArrayList<>();
         this.influencingOn = new ArrayList<>();
+        this.textColor = Color.BLACK;
+        this.backgroundColor = Color.TRANSPARENT;
     }
 
     @Override
@@ -100,17 +107,59 @@ public class CellImpl implements Cell, Serializable {
         clearInfluencingOn();
     }
 
+    @Override
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    @Override
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    @Override
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
+    }
+
+    @Override
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    @Override
+    public void setDefaultColor() {
+        this.backgroundColor = Color.TRANSPARENT;
+        this.textColor = Color.BLACK;
+    }
+
+    @Override
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    @Override
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CellImpl cell = (CellImpl) o;
-        return Objects.equals(effectiveValue, cell.effectiveValue);
+        return Objects.equals(coordinate.toString(), cell.coordinate.toString())
+        && Objects.equals(effectiveValue, cell.effectiveValue) && Objects.equals(textColor, cell.textColor) && Objects.equals(backgroundColor, cell.backgroundColor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(originalValue);
+        return Objects.hash(effectiveValue, textColor, backgroundColor);
+    }
+
+    @Override
+    public String toString() {
+        return coordinate.toString();
     }
 }

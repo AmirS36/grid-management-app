@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<HBox id="action-line-hbox" fx:id="actionLineHBox" alignment="CENTER_LEFT" disable="true" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="1400.0" styleClass="background-comp" stylesheets="@actionLine.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.gridArea.actionLine.ActionLineController">
+   <children>
+      <Label id="selected-cell-id" minWidth="140.0" styleClass="field-header" text="Selected Cell ID" HBox.hgrow="ALWAYS">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </Label>
+      <Label id="selected-cell-ta" fx:id="selectedCellTA" minWidth="30.0" styleClass="dynamic-field-header" text="  " HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label id="original-value-header" minWidth="125.0" styleClass="field-header" text="Original Value" HBox.hgrow="ALWAYS">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </Label>
+      <TextField id="original-value-tf" fx:id="originalValueTF" maxWidth="350.0" minWidth="220.0" prefHeight="25.0" prefWidth="220.0" styleClass="action-line" HBox.hgrow="ALWAYS">
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+      </TextField>
+      <Button id="update-value-button" fx:id="updateValueButton" minWidth="120.0" mnemonicParsing="false" onAction="#handleUpdateValueButton" styleClass="button" text="Update Value" HBox.hgrow="ALWAYS">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="15.0" />
+         </HBox.margin>
+      </Button>
+      <Label alignment="CENTER_RIGHT" minWidth="181.0" prefHeight="50.0" styleClass="field-header" text="Last Version Updated" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="3.0" />
+         </HBox.margin>
+      </Label>
+      <Label fx:id="lastUpdateCellVersionTA" maxWidth="600.0" prefHeight="42.0" prefWidth="151.0" styleClass="dynamic-field-header" HBox.hgrow="ALWAYS">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="5.0" />
+         </HBox.margin>
+      </Label>
+      <Label id="original-value-header" alignment="CENTER_RIGHT" maxWidth="50.0" minWidth="110.0" prefHeight="50.0" styleClass="field-header" text="Grid Version" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="45.0" />
+         </HBox.margin>
+      </Label>
+      <Label id="selected-cell-ta" fx:id="gridVersionTA" alignment="CENTER_RIGHT" minWidth="20.0" prefHeight="42.0" prefWidth="20.0" styleClass="dynamic-field-header" text="  " textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <HBox.margin>
+            <Insets left="2.0" />
+         </HBox.margin>
+      </Label>
+      <StackPane maxWidth="151.0" prefHeight="50.0" prefWidth="151.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Button fx:id="newVersionButton" mnemonicParsing="false" onAction="#newVersionButtonAction" text="New Version Available" visible="false" />
+            <Button id="version-selector-button" fx:id="versionSelectorButton" alignment="CENTER" minWidth="150.0" mnemonicParsing="false" onAction="#versionSelectorButtonAction" prefWidth="151.0" text="Version Selector" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets right="10.0" />
+               </StackPane.margin>
+            </Button>
+         </children>
+         <HBox.margin>
+            <Insets left="10.0" />
+         </HBox.margin>
+      </StackPane>
+   </children>
+   <padding>
+      <Insets left="15.0" />
+   </padding>
+</HBox>

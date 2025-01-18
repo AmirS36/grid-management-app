@@ -13,13 +13,19 @@ public class LiteralExpression implements Expression {
     public LiteralExpression(Object literalValue, CellType type) {
         if (literalValue instanceof Double) {
             this.value = new EffectiveValueImpl(CellType.NUMERIC, literalValue);
-            this.type = CellType.NUMERIC;
-        } else if (literalValue instanceof Boolean) {
-            this.value = new EffectiveValueImpl(CellType.BOOLEAN, literalValue);
-            this.type = CellType.BOOLEAN;
-        } else {
-            this.value = new EffectiveValueImpl(CellType.STRING, literalValue);
-            this.type = CellType.STRING;
+            this.type = type;
+        }
+        else if (literalValue.equals("TRUE")) {
+            this.value = new EffectiveValueImpl(CellType.BOOLEAN, true);
+            this.type = type;
+        }
+        else if (literalValue.equals("FALSE")) {
+            this.value = new EffectiveValueImpl(CellType.BOOLEAN, false);
+            this.type = type;
+        }
+        else {
+            this.value = new EffectiveValueImpl(type, literalValue);
+            this.type = type;
         }
     }
 

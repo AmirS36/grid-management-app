@@ -1,5 +1,7 @@
 package sheet.base.impl;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 import sheet.effectiveValue.CellType;
 import sheet.effectiveValue.EffectiveValue;
 import sheet.cell.Cell;
@@ -16,21 +18,25 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static sheet.effectiveValue.EffectiveValueImpl.extractFunctionArguments;
+
 public class SheetImpl implements Sheet, Serializable {
 
     private final String name;
+    private String owner;
     private final int rowsLength;
     private final int colsLength;
     private final Map<Coordinate, Cell> activeCells;
-    private int rowHeight = 3;
-    private int colWidth = 15;
+    private int rowHeight;
+    private int colWidth;
     private int version;
     private int cellsChanged;
-    private Map<Coordinate, Cell> previousActiveCells;
-    private final Map<String, Range> ranges;
+    private Map<Coordinate, Cell> previousActiveCells = new HashMap<>();
+    private ObservableMap<String, Range> ranges = FXCollections.observableHashMap();
 
     public SheetImpl(String name, int rows, int cols, int rowHeight, int colWidth, Map<Coordinate, Cell> cells, int version, int cellsChanged) {
         this.name = name;
+        this.owner = "defualt";
         this.rowsLength = rows;
         this.colsLength = cols;
         this.rowHeight = rowHeight;
@@ -38,7 +44,6 @@ public class SheetImpl implements Sheet, Serializable {
         this.activeCells = cells; // Ensure deep copy
         this.version = version;
         this.cellsChanged = cellsChanged;
-        this.ranges = new HashMap<>();
     }
 
     @Override
@@ -71,10 +76,15 @@ public class SheetImpl implements Sheet, Serializable {
     public int getCellsChanged() {return cellsChanged;}
 
     @Override
+    public Map<Coordinate, Cell> getPreviousActiveCells() {
+        return previousActiveCells;
+    }
+
+    @Override
     public void setCellsChanged(int cellsChanged) {this.cellsChanged = cellsChanged;}
 
-    public Cell getCell(int col, int row) {
-        return getCell(getColumnName(col) + (row + 1));
+    public Cell getCell(Coordinate coordinate) {
+        return getCell(getColumnName(coordinate.getCol()) + (coordinate.getRow() + 1));
     }
 
     private String getColumnName(int col) {
@@ -89,6 +99,7 @@ public class SheetImpl implements Sheet, Serializable {
     @Override
     public Cell getCell(String cellID) {
 
+        cellID = cellID.toUpperCase();
         validateCellReference(cellID);
         // Convert cellPosition (e.g., "B3") to row and column indices
         int col = cellID.charAt(0) - 'A';  // Convert 'B' to 1, 'A' to 0, etc.
@@ -98,16 +109,21 @@ public class SheetImpl implements Sheet, Serializable {
         if (coordinate.getRow() + 1 < 1 || coordinate.getRow() + 1 > rowsLength || coordinate.getCol() + 1 < 1 || coordinate.getCol() + 1 > colsLength) {
             throw new IllegalArgumentException("Cell ("+ coordinate + ") is out of sheet boundaries.");
         }
-        Optional<Cell> maybeCell = Optional.ofNullable(activeCells.get(coordinate));
-
-        return maybeCell.orElse(null);
+        Cell currentCell = activeCells.get(coordinate);
+        if (currentCell == null) {
+            EffectiveValue effectiveValue = new EffectiveValueImpl(CellType.EMPTY, "");
+            Cell newCell = new CellImpl(coordinate.getRow(), coordinate.getCol(), "", effectiveValue, 0);
+            activeCells.put(coordinate, newCell);
+            currentCell = newCell;
+        }
+        return currentCell;
     }
 
     @Override
-    public Map<Coordinate,Cell> getActiveCells(){return activeCells;}
+    public Map<Coordinate,Cell> getActiveCells(){ return activeCells; }
 
     @Override
-    public void setCell(String cellID, String value) {
+    public void setCell(String cellID, String value, String lastUpdatedBy, String type) {
         int currentVersion = getVersion();
         previousActiveCells = copyActiveCells();
 
@@ -119,7 +135,7 @@ public class SheetImpl implements Sheet, Serializable {
 
         Optional<Cell> maybeCell = Optional.ofNullable(activeCells.get(coordinate));
         if(maybeCell.isEmpty()) {
-            EffectiveValue effectiveValue = new EffectiveValueImpl(CellType.STRING, " ");
+            EffectiveValue effectiveValue = new EffectiveValueImpl(CellType.EMPTY, " ");
             Cell newCell = new CellImpl(coordinate.getRow(), coordinate.getCol(), " ", effectiveValue, 0);
             activeCells.put(coordinate, newCell);
         }
@@ -131,18 +147,27 @@ public class SheetImpl implements Sheet, Serializable {
             dependentCell.removeInfluence(currentCell);
         }
 
+        for (Range range : getRanges().values()) {
+            if (range.isInfluencing(currentCell)) {
+                range.removeInfluence(currentCell);
+            }
+        }
+
         // Clear the old dependencies
         currentCell.clearDependsOn();
 
         // Step 2: Update the cell's value and identify new dependencies
         currentCell.updateEffectiveValue(value, this);
         currentCell.setCellOriginalValue(value);
-        currentCell.setVersion(currentVersion + 1);
+        if (type.equals("Final")) {
+            currentCell.setVersion(currentVersion + 1);
+            currentCell.setLastUpdatedBy(lastUpdatedBy);
+        }
 
         List<Cell> newDependencies = new ArrayList<>();
         if (isFunction(currentCell.getOriginalValue())) {
             // Parse the function and extract dependencies
-            List<Coordinate> referencedCoordinates = parseFunctionForReferences(currentCell.getOriginalValue());
+            List<Coordinate> referencedCoordinates = parseFunctionForReferences(currentCell.getOriginalValue(), currentCell);
             for (Coordinate refCoord : referencedCoordinates) {
                 Cell referencedCell = activeCells.get(refCoord);
                 newDependencies.add(referencedCell);
@@ -164,11 +189,17 @@ public class SheetImpl implements Sheet, Serializable {
         for (int i = sortedCells.size() - 1; i >= 0; i--) {
             Cell cell = sortedCells.get(i);
             cell.updateEffectiveValue(cell.getOriginalValue(), this); // Update value based on the original formula/value
+            if (type.equals("Final")) {
+                cell.setLastUpdatedBy(lastUpdatedBy);
+                cell.setVersion(currentVersion + 1);
+            }
         }
 
         // Update the version number and track changes
-        setVersion(currentVersion + 1);
-        calculateCellsChanged();
+        if (type.equals("Final")) {
+            setVersion(currentVersion + 1);
+            calculateCellsChanged();
+        }
     }
 
     private List<Cell> topologicalSortFromCell(Cell startCell) {
@@ -216,35 +247,43 @@ public class SheetImpl implements Sheet, Serializable {
         return str.startsWith("{") && str.endsWith("}");
     }
 
-    private List<Coordinate> parseFunctionForReferences(String inputValue) {
+    private List<Coordinate> parseFunctionForReferences(String inputValue, Cell currentCell) {
         List<Coordinate> references = new ArrayList<>();
 
         // Define the pattern to match {REF,<CellID>} with optional spaces around the comma
-        Pattern pattern = Pattern.compile("\\{REF\\s*,\\s*([A-Z]+[0-9]+)\\}");
+        Pattern pattern = Pattern.compile("(?i)\\{REF\\s*,\\s*([A-Z0-9]+)\\}");
         Matcher matcher = pattern.matcher(inputValue);
 
         // Find all matches of the {REF,<CellID>} pattern
         while (matcher.find()) {
             String cellId = matcher.group(1);  // Extract the CellID part (e.g., A1, B2)
-            Coordinate coordinate = convertCellIdToCoordinate(cellId);  // Convert CellID to Coordinate
+            Coordinate coordinate = SheetUtils.convertCellIdToCoordinate(cellId);  // Convert CellID to Coordinate
             references.add(coordinate);  // Add the Coordinate to the list
         }
 
-        return references;
-    }
+        List<String> arguments = extractFunctionArguments(inputValue);  // Extract function arguments
+        arguments.removeFirst();
 
-    private Coordinate convertCellIdToCoordinate(String cellId) {
-        // Convert a cell ID like "A1" to a Coordinate object
-        int col = convertToColumnIndex(cellId.replaceAll("[0-9]", ""));  // Extract column part and convert
-        int row = Integer.parseInt(cellId.replaceAll("[A-Z]", "")) - 1;  // Extract row part and convert (adjusting for 0-based index)
-        return CoordinateFactory.createCoordinate(row, col);
+        Map<String, Range> currentRanges = getRanges();
+        for (String rangeName : currentRanges.keySet()) {
+            // Use contains() to check if the inputValue contains the range name
+            if (arguments.getFirst().equalsIgnoreCase(rangeName)) {
+                Range range = currentRanges.get(rangeName);
+                range.addInfluence(currentCell);
+                Set<Cell> cells = range.getCells();
+                for (Cell cell : cells) {
+                    references.add(cell.getCoordinate());
+                }
+            }
+        }
+        return references;
     }
 
     private void calculateCellsChanged() {
         setCellsChanged(0);
 
         for (Coordinate coord : activeCells.keySet()) {
-            if (!previousActiveCells.containsKey(coord) ||
+            if (/*previousActiveCells.containsKey(coord) ||*/
                     !activeCells.get(coord).equals(previousActiveCells.get(coord))) {
                 setCellsChanged(getCellsChanged() + 1);
             }
@@ -263,15 +302,6 @@ public class SheetImpl implements Sheet, Serializable {
             copy.put(copiedCoordinate, copiedCell);
         }
         return copy;
-    }
-
-    private int convertToColumnIndex(String columnLetter) {
-        int columnIndex = 0;
-        for (int i = 0; i < columnLetter.length(); i++) {
-            columnIndex *= 26;
-            columnIndex += columnLetter.charAt(i) - 'A' + 1;
-        }
-        return columnIndex - 1;  // Convert to 0-based index
     }
 
     @Override
@@ -311,11 +341,11 @@ public class SheetImpl implements Sheet, Serializable {
     }
 
     private void updateCellDependencies(Cell currentCell) {
-//HELLO
+
         List<Cell> newDependencies = new ArrayList<>();
         if (isFunction(currentCell.getOriginalValue())) {
             // Parse the function and extract dependencies
-            List<Coordinate> referencedCoordinates = parseFunctionForReferences(currentCell.getOriginalValue());
+            List<Coordinate> referencedCoordinates = parseFunctionForReferences(currentCell.getOriginalValue(), currentCell);
             for (Coordinate refCord : referencedCoordinates) {
                 Cell referencedCell = activeCells.get(refCord);
                 newDependencies.add(referencedCell);
@@ -376,10 +406,33 @@ public class SheetImpl implements Sheet, Serializable {
         }
     }
 
+    @Override
+    public void isWithinBounds(Coordinate coord) {
+        if (coord.getRow() + 1 < 1 || coord.getRow() + 1 > rowsLength || coord.getCol() + 1 < 1 || coord.getCol() + 1 > colsLength) {
+            throw new IllegalArgumentException("Cell (" + coord + ") is out of sheet boundaries.");
+        }
+    }
+
+    public void setOwner (String owner) {
+        this.owner = owner;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getSize() {
+        return rowsLength + "x" + colsLength;
+    }
+
+
     //Ranges
 
     @Override
     public void addRange(Range range) {
+        if (ranges.containsKey(range.getName())) {
+            throw new IllegalArgumentException("There can't be more than one range with the same name: " + range.getName());
+        }
         ranges.put(range.getName(),range);
     }
 
@@ -390,13 +443,20 @@ public class SheetImpl implements Sheet, Serializable {
 
     @Override
     public void removeRange(String name) {
-        ranges.remove(name);
+        Range range = ranges.get(name);
+        if (range.isFreeToGo()) {
+            ranges.remove(name);
+        }
+        else {
+            throw new IllegalArgumentException("Range '" + name + "' cannot be deleted because it influences the following cells: " + range.getInfluencedCells() +
+                    ". \nYou must delete these cells first if you want to delete the range.");
+
+        }
     }
 
     @Override
-    public Range createRange(String name, Coordinate topLeft, Coordinate bottomRight) {
+    public Range createRange(String name, Coordinate topLeft, Coordinate bottomRight) throws IllegalArgumentException {
         Set<Cell> cells = new HashSet<>();
-
         // Iterate through the specified range and add cells to the set
         for (int row = topLeft.getRow(); row <= bottomRight.getRow(); row++) {
             for (int col = topLeft.getCol(); col <= bottomRight.getCol(); col++) {
@@ -408,22 +468,26 @@ public class SheetImpl implements Sheet, Serializable {
             }
         }
         // Validate the range
-        if (isValidRange(topLeft, bottomRight, cells)) {
+        if (isValidRange(topLeft, bottomRight, cells, name)) {
             return new RangeImpl(name,cells);
-        } else {
-            throw new IllegalArgumentException("The range is invalid.");
         }
+        return null;
     }
 
     @Override
-    public boolean isValidRange(Coordinate topLeft, Coordinate bottomRight, Set<Cell> cells) {
+    public boolean isValidRange(Coordinate topLeft, Coordinate bottomRight, Set<Cell> cells, String name) {
+
+        if(topLeft.getRow() > bottomRight.getRow() || topLeft.getCol() > bottomRight.getCol()) {
+            throw new IllegalArgumentException("Invalid range input. " + topLeft + " cant be bigger than " + bottomRight);
+        }
+
         // Check if the cells form a valid rectangular block
         // Optionally, you can add more specific validation based on your requirements
         for (int row = topLeft.getRow(); row <= bottomRight.getRow(); row++) {
             for (int col = topLeft.getCol(); col <= bottomRight.getCol(); col++) {
                 Coordinate coord = CoordinateFactory.createCoordinate(row, col);
                 if (!cells.contains(getCell(coord.toString()))) {
-                    return false;
+                    throw new IllegalArgumentException("Cell (" + coord + ") in Range: " + name + "is out of sheet boundaries.");
                 }
             }
         }

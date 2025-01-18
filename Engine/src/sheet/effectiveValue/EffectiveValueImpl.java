@@ -31,15 +31,25 @@ public class EffectiveValueImpl implements EffectiveValue, Serializable {
             this.value = Double.parseDouble(value);
         }
         //Check if the value is boolean
-        else if (value.equalsIgnoreCase("true") || value.equalsIgnoreCase("false")) {
+        else if (value.equalsIgnoreCase("true")) {
             this.cellType = CellType.BOOLEAN;
-            this.value = Boolean.parseBoolean(value);
+            this.value = true;
+        }
+        else if (value.equalsIgnoreCase("false")) {
+            this.cellType = CellType.BOOLEAN;
+            this.value = false;
         }
         //Check if the value is an empty string
         else if (value.isEmpty()) {
             this.cellType = CellType.EMPTY;
             this.value = "";
         }
+        //Check if the value is a range
+        else if (sheet.getRange(value) != null) {
+            this.cellType = CellType.RANGE;
+            this.value = sheet.getRange(value).toString();
+        }
+
         //Otherwise, consider it as a string
         else {
             this.cellType = CellType.STRING;
@@ -62,7 +72,6 @@ public class EffectiveValueImpl implements EffectiveValue, Serializable {
         if (cellType.isAssignableFrom(type)) {
             return type.cast(value);
         }
-        // error handling... exception ? return null ?
         return null;
     }
 
@@ -101,11 +110,7 @@ public class EffectiveValueImpl implements EffectiveValue, Serializable {
 
         String functionName = parts[0].trim();  // Get the first part as the function name
 
-        // Check if the function name is in uppercase
-        if (!functionName.equals(functionName.toUpperCase())) {
-            throw new IllegalArgumentException("Function name must be in uppercase: " + functionName);
-        }
-        return functionName;
+        return functionName.toUpperCase();
     }
 
     public static List<String> extractFunctionArguments(String input) {
@@ -141,6 +146,11 @@ public class EffectiveValueImpl implements EffectiveValue, Serializable {
         }
 
         return parts;
+    }
+
+    @Override
+    public String toString() {
+        return value.toString();
     }
 
     @Override

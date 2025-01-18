@@ -25,6 +25,10 @@ public class CoordinateImpl implements Coordinate, Serializable {
 
     @Override
     public String toString() {
+        if (row == -1 && col == -1) {
+            return "  ";
+        }
+
         String columnLetter = convertToColumnLetter(col);  // Convert the column index to a letter
         int rowNumber = row + 1;  // Convert zero-based index to a 1-based index
         return columnLetter + rowNumber;

@@ -2,16 +2,18 @@ package sheet.ranges;
 
 import sheet.cell.Cell;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class RangeImpl implements Range {
     private Set<Cell> cells = new HashSet<>();
     private String name;
+    private List<Cell> influencingOn;
 
     public RangeImpl(String name, Set<Cell> cells) {
         this.name = name;
         this.cells = cells;
+        this.influencingOn = new ArrayList<>();
     }
 
     @Override
@@ -44,5 +46,71 @@ public class RangeImpl implements Range {
         this.name = name;
     }
 
+    @Override
+    public List<List<Cell>> getRows() {
+        // Create a list to hold all cells from the set
+        List<Cell> allCells = new ArrayList<>(this.getCells());
 
+        // Use a Map to group cells by their row index
+        Map<Integer, List<Cell>> rowMap = new HashMap<>();
+
+        // Iterate over each cell and group them into rows
+        for (Cell cell : allCells) {
+            int rowIndex = cell.getCoordinate().getRow();
+            rowMap.computeIfAbsent(rowIndex, k -> new ArrayList<>()).add(cell);
+        }
+
+        // Create a list to store the sorted rows
+        List<List<Cell>> sortedRows = new ArrayList<>();
+
+        // Sort the keys (row indices) to maintain order
+        List<Integer> sortedRowIndices = new ArrayList<>(rowMap.keySet());
+        Collections.sort(sortedRowIndices);
+
+        // Populate the sortedRows list with the cells in the correct order
+        for (int rowIndex : sortedRowIndices) {
+            sortedRows.add(rowMap.get(rowIndex));
+        }
+
+        return sortedRows;
+    }
+
+    @Override
+    public void addInfluence(Cell cell) {
+        influencingOn.add(cell);
+    }
+
+    @Override
+    public void removeInfluence(Cell cell) {
+        influencingOn.remove(cell);
+    }
+
+    @Override
+    public boolean isInfluencing(Cell cell) {
+        if (influencingOn.contains(cell)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isFreeToGo() {
+        return influencingOn.isEmpty();
+    }
+
+    @Override
+    public List<Cell> getInfluencedCells() {
+        return  influencingOn;
+    }
+
+
+    @Override
+    public String toString() {
+        // Collect all the cell coordinates in the range
+        String cellsString = cells.stream()
+                .map(Cell::toString) // Assuming Cell has a proper toString() method for its coordinates
+                .collect(Collectors.joining(", "));
+
+        return name + ": " + cellsString;
+    }
 }

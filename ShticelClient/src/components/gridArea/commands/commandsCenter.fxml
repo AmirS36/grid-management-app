@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxWidth="242.0" minHeight="380.0" prefWidth="242.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="components.gridArea.commands.CommandsCenterController">
+   <tabs>
+      <Tab id="settings-tab" fx:id="settingTabButton" closable="false" onSelectionChanged="#settingTabButtonAction" text="Settings">
+         <content>
+            <VBox id="visuals" fx:id="visualSettingVbox" alignment="TOP_CENTER" minHeight="250.0" minWidth="220.0" prefHeight="320.0" prefWidth="220.0">
+               <children>
+                  <Label id="visual-properties-header" alignment="CENTER" prefWidth="300.0" styleClass="area-header" text="Structure Properties" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" styleClass="instruction-header" text="Select a row / column to edit" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="2.5" top="1.5" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox fx:id="gridSettingsHbox" alignment="CENTER" maxHeight="90.0" prefHeight="90.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="150.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label id="row-width-header" minHeight="31.0" styleClass="field-header" text="Row Height" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label id="column-width-header" minHeight="31.0" styleClass="field-header" text="Column Width" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="alignment-header" minHeight="31.0" styleClass="field-header" text="Alignment" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="4.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" maxHeight="85.0" prefHeight="200.0" prefWidth="125.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Spinner fx:id="rowHeightSpinner" editable="true" maxWidth="80.0" minHeight="26.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Spinner>
+                              <Spinner fx:id="columnWidthSpinner" editable="true" maxWidth="80.0" minHeight="26.0">
+                                 <VBox.margin>
+                                    <Insets top="7.5" />
+                                 </VBox.margin>
+                              </Spinner>
+                              <HBox id="alignment-buttons" fx:id="alignmentButtons" alignment="CENTER" minHeight="26.0" prefHeight="35.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <Button id="left-alignment-button" fx:id="leftAlignmentButton" contentDisplay="TOP" minHeight="25.0" minWidth="28.0" mnemonicParsing="false" onAction="#leftAlButtonAction" prefHeight="25.0" prefWidth="28.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" styleClass="visual-properties">
+                                             <image>
+                                                <Image url="@../../../resources/images/left.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font size="1.0" />
+                                       </font>
+                                    </Button>
+                                    <Button id="center-alignment-button" fx:id="CenterAlignmentButton" minHeight="25.0" minWidth="28.0" mnemonicParsing="false" onAction="#centerAlButtonAction" prefHeight="25.0" prefWidth="28.0">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" styleClass="visual-properties">
+                                             <image>
+                                                <Image url="@../../../resources/images/center.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button id="right-alignment-button" fx:id="rightAlignmentButton" minHeight="25.0" minWidth="28.0" mnemonicParsing="false" onAction="#rightAlButtonAction" prefHeight="25.0" prefWidth="28.0">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" styleClass="visual-properties">
+                                             <image>
+                                                <Image url="@../../../resources/images/right.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets top="7.5" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label alignment="CENTER" prefWidth="300.0" styleClass="area-header" text="Cell Design" textAlignment="CENTER" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="6.5" />
+                     </VBox.margin>
+                  </Label>
+                  <Label styleClass="instruction-header" text="Select a cell to edit">
+                     <VBox.margin>
+                        <Insets top="1.5" />
+                     </VBox.margin></Label>
+                  <HBox fx:id="cellDesignHbox" alignment="CENTER" maxHeight="90.0" prefHeight="95.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="85.0" prefHeight="70.0" prefWidth="142.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label id="color-header" styleClass="field-header" text="Text Color" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="2.5" top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label id="background-color-header" alignment="CENTER" maxHeight="69.0" minHeight="50.0" minWidth="110.0" prefHeight="49.0" prefWidth="110.0" styleClass="field-header" text="Background Color" textAlignment="CENTER" wrapText="true" VBox.vgrow="ALWAYS">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="7.5" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="85.0" prefHeight="85.0" prefWidth="71.0" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets right="5.0" top="5.0" />
+                           </HBox.margin>
+                           <children>
+                              <ColorPicker fx:id="mainColorPicker" maxWidth="40.0" onAction="#mainColorAction" styleClass="color-picker" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" right="5.0" top="2.0" />
+                                 </VBox.margin>
+                                 <value>
+                                    <Color />
+                                 </value>
+                              </ColorPicker>
+                              <ColorPicker fx:id="backgroundColorPicker" maxWidth="40.0" onAction="#backgroundColorAction" styleClass="color-picker" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets right="5.0" top="15.0" />
+                                 </VBox.margin>
+                                 <value>
+                                    <Color />
+                                 </value>
+                              </ColorPicker>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <Button fx:id="cleanDesignButton" alignment="CENTER" mnemonicParsing="false" onAction="#cleanDesignButtonAction" text="Clean">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab id="filtering-tab" closable="false" onSelectionChanged="#filteringTabButtonAction" text="Filtering">
+         <content>
+            <VBox fx:id="sortingAndFilteringVbox1" alignment="TOP_CENTER" minHeight="250.0" minWidth="220.0" prefHeight="280.0" prefWidth="220.0">
+               <children>
+                  <Label id="sorting-header" alignment="CENTER" prefWidth="300.0" styleClass="area-header" text="Filtering">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" styleClass="instruction-header" text="Enter range (From, To) and columns" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets top="1.5" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" maxWidth="220.0" minHeight="35.0" prefHeight="40.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" styleClass="field-header" text="From">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="filterFromTF" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label id="sorting-to-header" layoutX="10.0" layoutY="10.0" styleClass="field-header" text="To">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="filterToTF" layoutX="38.0" layoutY="10.0" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" minHeight="35.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" styleClass="field-header" text="Columns">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="filterColumnsTF" maxWidth="110.0" promptText="Separated by ','">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="40.0" prefWidth="220.0">
+                     <children>
+                        <Button fx:id="filterButton" alignment="CENTER" mnemonicParsing="false" onAction="#filterButtonAction" text="Show Uniuqe Values" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets top="2.5" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="1.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label id="unique-values-header" fx:id="uniqueValuesHeader" alignment="CENTER" prefWidth="220.0" styleClass="area-header" text="Unique Values" visible="false">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ListView fx:id="uniqueValuesLV" maxWidth="170.0" prefHeight="140.0" prefWidth="150.0" visible="false" VBox.vgrow="ALWAYS" />
+                  <HBox alignment="CENTER" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                     <children>
+                        <Button fx:id="cancelFilterButton" mnemonicParsing="false" onAction="#cancelFilterButtonAction" text="Cancel Filter" visible="false" />
+                        <Button fx:id="applyFilterButton" mnemonicParsing="false" onAction="#ApplyFilterButtonAction" text="Apply Filter" visible="false">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab id="sorting-tab" fx:id="sortingTabButton" closable="false" onSelectionChanged="#sortingTabButtonAction" text="Sorting">
+         <content>
+            <VBox fx:id="sortingAndFilteringVbox" alignment="TOP_CENTER" minHeight="250.0" minWidth="220.0" prefHeight="280.0" prefWidth="220.0">
+               <children>
+                  <Label id="sorting-header" alignment="CENTER" prefWidth="300.0" styleClass="area-header" text="Sorting">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" styleClass="instruction-header" text="Enter range (From, To) and columns" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets top="1.5" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" styleClass="field-header" text="From">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="sortingFromTF" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label id="sorting-to-header" layoutX="10.0" layoutY="10.0" styleClass="field-header" text="To">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="sortingToTF" layoutX="38.0" layoutY="10.0" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" styleClass="field-header" text="Columns">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="sortingColumnsTF" maxWidth="110.0" promptText="Separated by ','">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Button fx:id="viewSortButton" alignment="CENTER" mnemonicParsing="false" onAction="#viewSortButtonAction" text="View Sort" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets top="2.5" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab fx:id="valueSimulationVBox" closable="false" text="VS">
+         <content>
+            <VBox fx:id="sortingAndFilteringVbox2" alignment="TOP_CENTER" minHeight="250.0" minWidth="220.0" prefHeight="280.0" prefWidth="220.0">
+               <children>
+                  <Label id="sorting-header" alignment="CENTER" prefWidth="220.0" styleClass="area-header" text="Sorting">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" styleClass="instruction-header" text="Enter range (From, To) and columns" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets top="1.5" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" styleClass="field-header" text="From">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="sortingFromTF1" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label id="sorting-to-header" layoutX="10.0" layoutY="10.0" styleClass="field-header" text="To">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="sortingToTF1" layoutX="38.0" layoutY="10.0" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" styleClass="field-header" text="Columns">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="sortingColumnsTF1" maxWidth="110.0" promptText="Separated by ','">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Button fx:id="viewSortButton1" alignment="CENTER" mnemonicParsing="false" onAction="#viewSortButtonAction" text="View Sort" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets top="2.5" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+         <content>
+            <VBox fx:id="valueSimultationVbox" alignment="TOP_CENTER" minHeight="250.0" minWidth="220.0" prefHeight="280.0" prefWidth="220.0">
+               <children>
+                  <Label id="sorting-header" alignment="CENTER" prefHeight="35.0" prefWidth="242.0" styleClass="area-header" text="Value Simulation">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="57.0" prefWidth="242.0" styleClass="instruction-header" text="Select a cell with a numeric value (not a formula), set a minimum and maximum range, and choose a step size." textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets top="1.5" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" maxWidth="220.0" minHeight="32.0" prefHeight="32.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" prefHeight="20.0" prefWidth="36.0" styleClass="field-header" text="Min">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="minRangeTF" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <Label id="sorting-to-header" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="36.0" styleClass="field-header" text="Max">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="maxRangeTF" layoutX="38.0" layoutY="10.0" maxWidth="45.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" minHeight="35.0" prefHeight="35.0" prefWidth="220.0">
+                     <children>
+                        <Label id="sorting-from-header" styleClass="field-header" text="Step">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="stepTF" maxWidth="110.0" prefHeight="25.0" prefWidth="60.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="220.0" prefHeight="33.0" prefWidth="220.0">
+                     <children>
+                        <Button fx:id="showSliderButton" alignment="CENTER" mnemonicParsing="false" onAction="#showSliderButtonAction" text="Show Slider" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets top="2.5" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="1.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Slider fx:id="vsSlider" maxWidth="200.0" prefWidth="200.0" showTickLabels="true" showTickMarks="true">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Slider>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab id="visual-tab" fx:id="visualTab" closable="false" onSelectionChanged="#visualTabButtonAction" text="Visual">
+         <content>
+            <Label id="visual-properties-header" alignment="CENTER" prefWidth="300.0" styleClass="area-header" text="Structure Properties">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </content>
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label id="visual-properties-header" alignment="CENTER" prefWidth="300.0" styleClass="area-header" text="Visuals">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="200.0">
+                     <children>
+                        <Label id="theme-header" minHeight="31.0" styleClass="field-header" text="Theme">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="themesComboBox" onAction="#themesComboBoxAction" prefWidth="125.0" promptText="Default">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </ComboBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" top="15.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="200.0">
+                     <children>
+                        <Label id="animations-header" minHeight="31.0" styleClass="field-header" text="Animations">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <ToggleButton fx:id="animationsToggleButton" mnemonicParsing="false" onAction="#animationsToggleButtonAction" styleClass="button" text="OFF">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </ToggleButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+   </tabs>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</TabPane>

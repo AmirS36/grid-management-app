@@ -62,6 +62,9 @@ public class Menu {
         }
     }
 
+
+
+
     private void handleSelection(MenuOption option) {
         switch (option) {
             case LOAD_SHEET:
@@ -85,7 +88,7 @@ public class Menu {
             case SHOW_VERSIONS:
                 if(getSheetManager() == null)
                     throw new IllegalStateException("You must load a sheet first!");
-                showVersionHistory();
+              //  showVersionHistory();
                 break;
             case SAVE_SHEET_TO_FILE:
                 if(getSheetManager() == null)
@@ -204,7 +207,7 @@ public class Menu {
             return;
         // Step 4: Update the cell
         try {
-            sheetManager.updateCell(cellPosition, value);
+            sheetManager.updateCell(cellPosition, value, " ","Final");
         } catch (IllegalArgumentException | IllegalStateException e) {
             printException(e);
             innerUpdateCell(cellPosition);
@@ -218,53 +221,11 @@ public class Menu {
         String value = scanner.nextLine().trim();
 
         try {
-            sheetManager.getCurrentSheet().setCell(cellID, value);
+            sheetManager.getCurrentSheet().setCell(cellID, value, " ","Final");
         } catch (IllegalArgumentException e) {
             printException(e);
             innerUpdateCell(cellID);
         }
-    }
-
-    private void showVersionHistory(){
-        System.out.println(" ");
-        System.out.println("Version | Number of Cells Changed");
-        System.out.println("------------------------------");
-
-        Map<Integer, Sheet> versionsMap = sheetManager.getVersionManager().getVersionsMap();
-
-        // Print version details
-        for (Map.Entry<Integer, Sheet> entry : versionsMap.entrySet()) {
-            System.out.printf("%7d | %d%n", entry.getKey(), entry.getValue().getCellsChanged());
-        }
-
-        // Ask the user to choose a version
-        System.out.print("Enter the version number to preview. (Type 'b'/'B' to go back): ");
-
-        int versionNumber = -1;
-        String input = scanner.nextLine().trim();
-        if(input.equalsIgnoreCase("b"))
-            return;
-        try {
-            versionNumber = Integer.parseInt(input);
-            // Check if version exists
-            if (!versionsMap.containsKey(versionNumber)) {
-                System.out.println("----------------ERROR----------------");
-                System.out.println("Version " + versionNumber + " doesn't exist.");
-                System.out.println("-------------------------------------");
-                showVersionHistory(); // Recursive call to retry
-                return;
-            }
-
-        } catch (NumberFormatException e) {
-            System.out.println("----------------ERROR----------------");
-            System.out.println("Invalid input. Please enter a valid version number.");
-            System.out.println("-------------------------------------");
-            showVersionHistory(); // Recursive call to retry
-            return;
-        }
-
-        // Show the selected version
-        SheetLayout.displaySheet(versionsMap.get(versionNumber));
     }
 
     private void handleSaveSheet() {

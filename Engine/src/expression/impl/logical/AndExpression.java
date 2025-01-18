@@ -1,0 +1,37 @@
+package expression.impl.logical;
+
+import expression.api.Expression;
+import sheet.effectiveValue.CellType;
+import sheet.effectiveValue.EffectiveValue;
+import sheet.effectiveValue.EffectiveValueImpl;
+
+public class AndExpression implements Expression {
+
+    private Expression left;
+    private Expression right;
+
+    public AndExpression(Expression left, Expression right) {
+        this.left = left;
+        this.right = right;
+    }
+
+    @Override
+    public EffectiveValue eval() {
+        EffectiveValue leftValue = this.left.eval();
+        EffectiveValue rightValue = this.right.eval();
+
+        if(leftValue.getCellType() != CellType.BOOLEAN || rightValue.getCellType() != CellType.BOOLEAN) {
+            return new EffectiveValueImpl(CellType.ERROR, "UNKNOWN");
+        }
+        else if (leftValue.extractValueWithExpectation(Boolean.class) && rightValue.extractValueWithExpectation(Boolean.class)) {
+            return new EffectiveValueImpl(CellType.BOOLEAN, true);
+        }
+        return new EffectiveValueImpl(CellType.BOOLEAN, false);
+
+    }
+
+    @Override
+    public CellType getExpressionType() {
+        return CellType.BOOLEAN;
+    }
+}

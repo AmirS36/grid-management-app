@@ -1,10 +1,11 @@
 package sheet.management.api;
 
+import javafx.collections.ObservableMap;
 import sheet.base.api.Sheet;
 import java.util.Map;
 
 public interface VersionManager {
-    public Map<Integer, Sheet> getVersionsMap ();
+    public ObservableMap<Integer, Sheet> getVersionsMap ();
     public void saveSheetVersion(Sheet oldSheet);
 
 }

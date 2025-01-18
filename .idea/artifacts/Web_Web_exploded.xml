@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Web:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Web_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Web/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ShticelServer" />
+          <element id="module-output" name="Engine" />
+          <element id="module-output" name="DTO" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="angus-activation" />
+          <element id="library" level="project" name="javafx-swt" />
+          <element id="library" level="project" name="gson-2.1" />
+          <element id="artifact" artifact-name="Engine:jar" />
+          <element id="artifact" artifact-name="DTO:jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
